@@ -1,4 +1,4 @@
-package Sort;
+
 
 public class Datensatz<T> implements Comparable<Datensatz<T>> {
 
