@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.junit.Test;
 
+
 public class TestQuickerSort {
 
 	int basis = 10;
@@ -17,10 +18,11 @@ public class TestQuickerSort {
 	@Test
 	public void testQuickerSort() {
 		
-		// Tests für N^exponent Listeneinträge
+		// Tests fï¿½r N^exponent Listeneintrï¿½ge
 		for(int exponent = 1; exponent <= maxExponent; exponent++){
 			long N = (int) Math.pow(basis, exponent);
-			System.out.println(String.format("Test Der Klasse QuickerSort2 mit %d Listeneinträgen:", N));
+			System.out.println(String.format("Test Der Klasse QuickerSort2 mit %d Listeneintrï¿½gen:", N));
+
 			
 			// Liste erstellen
 			List<Sortobject<?>> list = new LinkedList<>();
@@ -46,7 +48,7 @@ public class TestQuickerSort {
 			List<Sortobject<?>> sortedList = qS.quickerSort2(list);
 			long timeStopp = System.currentTimeMillis();
 			System.out.println(String.format("Aufwand:         %8d", qS.counter));
-			System.out.println(String.format("Benötigte Zeit : %8d ms", timeStopp - timeStart));
+			System.out.println(String.format("Benï¿½tigte Zeit : %8d ms", timeStopp - timeStart));
 			
 			//Testen ob die Liste wieder sortiert ist
 			

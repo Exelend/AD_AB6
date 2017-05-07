@@ -21,7 +21,7 @@ public class QuickerSort {
 		if(list.size() == 1){
 			return list;
 		} else if(list.size()>40){
-			// Sortierung für N >= 40
+			// Sortierung fï¿½r N >= 40
 			List<List<Sortobject<?>>> listList = new LinkedList<List<Sortobject<?>>>();
 			for(int i = 0; i<splits; i++){
 				listList.add(new LinkedList<Sortobject<?>>());
@@ -41,16 +41,20 @@ public class QuickerSort {
 			}
 			return ergList;
 		}else{
-			// Sortierung für N < 40
+			// Sortierung fï¿½r N < 40
 			for(Sortobject<?> d : list){
 				if(d.getKey()<(lowerValue+(range/2))){
 					int i = 0;
-					while( !ergList.isEmpty() && d.getKey() > ergList.get(i).getKey() && i < ergList.size()-1){
+					while( !ergList.isEmpty() &&
+						   d.getKey() > ergList.get(i).getKey() &&
+						   i < ergList.size()-1)
+					{
 						i++;
 						counter++;
 					}
 					ergList.add(i, d);
 				} else {
+
 					if(!ergList.isEmpty()){
 						int i = ergList.size()-1;
 						while( d.getKey() < ergList.get(i).getKey() && i > 0){
