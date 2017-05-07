@@ -12,7 +12,7 @@ public class TestQuickerSort {
 
 	int basis = 10;
 	
-	int maxExponent = 6;
+	int maxExponent = 1;
 	
 	@Test
 	public void testQuickerSort() {
@@ -20,7 +20,7 @@ public class TestQuickerSort {
 		// Tests für N^exponent Listeneinträge
 		for(int exponent = 1; exponent <= maxExponent; exponent++){
 			long N = (int) Math.pow(basis, exponent);
-			System.out.println(String.format("Test Der Klasse QuickerSort mit %d Listeneinträgen:", N));
+			System.out.println(String.format("Test Der Klasse QuickerSort2 mit %d Listeneinträgen:", N));
 			
 			// Liste erstellen
 			List<Sortobject<?>> list = new LinkedList<>();
@@ -39,10 +39,11 @@ public class TestQuickerSort {
 				i++;
 			} while (istSortiert == true && i<N-1);
 			assertFalse("Liste ist noch sortiert!", istSortiert);
+			System.out.println(list.toString());
 			
-			QuickerSort qS = new QuickerSort();
+			QuickerSort2 qS = new QuickerSort2();
 			long timeStart = System.currentTimeMillis(); 
-			qS.quickerSort(list);
+			List<Sortobject<?>> sortedList = qS.quickerSort2(list);
 			long timeStopp = System.currentTimeMillis();
 			System.out.println(String.format("Aufwand:         %8d", qS.counter));
 			System.out.println(String.format("Benötigte Zeit : %8d ms", timeStopp - timeStart));
@@ -51,12 +52,13 @@ public class TestQuickerSort {
 			
 			boolean istUnsortiert = false;
 			
-			for(long j = 0; j < list.size()-1; j++){ 
-				if(list.get((int)j).getKey()<list.get((int)j+1).getKey()){
+			for(long j = 0; j < sortedList.size()-2; j++){ 
+				if(sortedList.get((int)j).getKey()>sortedList.get((int)j+1).getKey()){
 					istUnsortiert = true;
 					break;
 				}
 			};
+			System.out.println(sortedList.toString());
 			assertFalse("Liste ist nicht sortiert!", istUnsortiert);
 		}		
 	}
