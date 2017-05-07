@@ -5,7 +5,7 @@ public class Sampling {
 	public static FileWrapper files;
 	
 	
-	static private createData(){
+	static private void createData(){
 		
 	}
 	

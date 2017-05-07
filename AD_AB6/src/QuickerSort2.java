@@ -10,24 +10,79 @@ public class QuickerSort2 {
 		
 		for(Sortobject<?> s : list){
 			if(ergList.isEmpty()){
-				// Wenn die Lise leer ist, ...
+				// Wenn die Liste leer ist, ...
 				ergList.add(s);
 			} else {
-				if(list.size() < 11){ // TODO auf ?6? setzen
+				if(ergList.size() < 20){ // TODO auf ?6? setzen
 					int i = 0;
-					while(ergList.get(i).getKey() < s.getKey() && i< ergList.size()-1){
-						i++;
+					for(Sortobject<?> so : ergList){
 						counter++;
+						if(s.getKey() > so.getKey()){
+							i++;
+						} else {
+							break;
+						}
 					}
-					if(i >= ergList.size()){
-						// Wenn i das Element mit dem momentan Größten Key ist, füge es hinten an
-						ergList.add(s);
-					} else {
-						// sonst, füge es an der passenden Stelle ein
+					if(i < ergList.size()){
+						//  füge es an der passenden Stelle ein
 						ergList.add(i, s);
+					} else {
+						// füge es hinten an
+						ergList.add(s);
+					}
+				} else {
+					// Annäherung an den Listenplatz
+					
+					int i = ergList.size()/2;
+					int iAlt = i;
+					int schritt = i;
+					do{
+						counter++;
+						iAlt = i;
+						schritt = schritt/2;
+						if(s.getKey() < ergList.get(i).getKey() ){
+							i = i-schritt;
+						} else {
+							i = i+(schritt); 
+						}
+					} while (Math.abs(i-iAlt) > 10);
+					
+					if(s.getKey() >= ergList.get(i).getKey()){
+						// Wenn das einzusortierende Element >= dem Listenplatz(i) ist, ...
+						while(i < ergList.size()){
+							counter++;
+							if(s.getKey() > ergList.get(i).getKey()){
+								i++;
+							} else {
+								break;
+							}
+						}
+						if(i < ergList.size()){
+							//  füge es an der passenden Stelle ein
+							ergList.add(i, s);
+						} else {
+							// füge es hinten an
+							ergList.add(s);
+						}
+					} else {
+						// Wenn das einzusortierende Element < dem Listenplatz(i) ist, ...
+						while( i >= 0){
+							counter++; 
+							if(s.getKey() < ergList.get(i).getKey()){
+								i--;
+							} else {
+								i++;
+								break;
+							}
+						}
+						if(i < 0){
+							ergList.add(0, s);
+						} else {
+							ergList.add(i, s);
+						}
 					}
 				}
-			}
+			} 
 		}
 		
 		

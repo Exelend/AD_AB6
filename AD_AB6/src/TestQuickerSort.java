@@ -1,6 +1,5 @@
 import static org.junit.Assert.*;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -13,7 +12,7 @@ public class TestQuickerSort {
 
 	int basis = 10;
 	
-	int maxExponent = 1;
+	int maxExponent = 5;
 	
 	@Test
 	public void testQuickerSort() {
@@ -21,8 +20,9 @@ public class TestQuickerSort {
 		// Tests f�r N^exponent Listeneintr�ge
 		for(int exponent = 1; exponent <= maxExponent; exponent++){
 			long N = (int) Math.pow(basis, exponent);
-			System.out.println(String.format("Test Der Klasse QuickerSort2 mit %d Listeneintr�gen:", N));
-
+			System.out.println("");
+			System.out.println("-------------------------------------------------------------");
+			System.out.println(String.format("Test Der Klasse QuickerSort2 mit %d Listeneintraegen:", N));
 			
 			// Liste erstellen
 			List<Sortobject<?>> list = new LinkedList<>();
@@ -41,7 +41,7 @@ public class TestQuickerSort {
 				i++;
 			} while (istSortiert == true && i<N-1);
 			assertFalse("Liste ist noch sortiert!", istSortiert);
-			System.out.println(list.toString());
+			//System.out.println(list.toString());
 			
 			QuickerSort2 qS = new QuickerSort2();
 			long timeStart = System.currentTimeMillis(); 
@@ -60,7 +60,7 @@ public class TestQuickerSort {
 					break;
 				}
 			};
-			System.out.println(sortedList.toString());
+			//System.out.println(sortedList.toString());
 			assertFalse("Liste ist nicht sortiert!", istUnsortiert);
 		}		
 	}
