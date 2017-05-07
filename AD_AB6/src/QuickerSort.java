@@ -38,14 +38,20 @@ public class QuickerSort {
 			for(Sortobject<?> d : list){
 				if(d.getKey()<(lowerValue+(range/2))){
 					int i = 0;
-					while( !ergList.isEmpty() && d.getKey() > ergList.get(i).getKey() && i < ergList.size()-1){
+					while( !ergList.isEmpty() &&
+						   d.getKey() > ergList.get(i).getKey() &&
+						   i < ergList.size()-1)
+					{
 						i++;
 						counter++;
 					}
 					ergList.add(i, d);
 				} else {
 					int i = list.size()-1;
-					while( !ergList.isEmpty() && d.getKey() < ergList.get(i).getKey() && i > 0){
+					while( !ergList.isEmpty() &&
+						   d.getKey() < ergList.get(i).getKey() &&
+						   i > 0)
+					{
 						i++;
 						counter++;
 					}
