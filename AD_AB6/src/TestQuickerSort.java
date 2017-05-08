@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import org.junit.Test;
 
+import algo.Sortobject;
+
 
 public class TestQuickerSort {
 

@@ -1,6 +1,8 @@
 import java.util.LinkedList;
 import java.util.List;
 
+import algo.Sortobject;
+
 public class QuickerSort2 {
 
 	public long counter = 0;
@@ -13,7 +15,7 @@ public class QuickerSort2 {
 				// Wenn die Liste leer ist, ...
 				ergList.add(s);
 			} else {
-				if(ergList.size() < 20){ // TODO auf ?6? setzen
+				if(ergList.size() < 20){ 
 					int i = 0;
 					for(Sortobject<?> so : ergList){
 						counter++;
@@ -24,14 +26,14 @@ public class QuickerSort2 {
 						}
 					}
 					if(i < ergList.size()){
-						//  füge es an der passenden Stelle ein
+						//  fï¿½ge es an der passenden Stelle ein
 						ergList.add(i, s);
 					} else {
-						// füge es hinten an
+						// fï¿½ge es hinten an
 						ergList.add(s);
 					}
 				} else {
-					// Annäherung an den Listenplatz
+					// Annï¿½herung an den Listenplatz
 					
 					int i = ergList.size()/2;
 					int iAlt = i;
@@ -58,10 +60,10 @@ public class QuickerSort2 {
 							}
 						}
 						if(i < ergList.size()){
-							//  füge es an der passenden Stelle ein
+							//  fï¿½ge es an der passenden Stelle ein
 							ergList.add(i, s);
 						} else {
-							// füge es hinten an
+							// fï¿½ge es hinten an
 							ergList.add(s);
 						}
 					} else {
