@@ -2,7 +2,9 @@ package algo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 public class Sortobject<T>  {
 
@@ -36,13 +38,11 @@ public class Sortobject<T>  {
 			                                        long minKey, 
 			                                        long maxKey)
 	{
-		List<Long> longList = 
-				new Random().longs(N, minKey, maxKey+1).
-				boxed().collect(Collectors.toList());
+		long[] keys = new Random().longs(N, minKey, maxKey).toArray();
 		ArrayList<Sortobject<?>> list = new ArrayList<Sortobject<?>>();
-		for(Long l : longList){
-			list.add(new Sortobject<String>(Long.toString(l), l));
+		for(int i=0; i < N; i++){
+			list.add(new Sortobject<String>(Long.toString(keys[i]), keys[i]));
 		}
-		return list;		
+		return list;	
 	}
 }

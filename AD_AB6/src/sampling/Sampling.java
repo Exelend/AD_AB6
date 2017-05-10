@@ -3,7 +3,9 @@ package sampling;
 import java.util.List;
 
 import algo.BetterQS;
+import algo.Keysort;
 import algo.RandomQS;
+import algo.Quickersort;
 import algo.Sortobject;
 
 public class Sampling {
@@ -12,6 +14,8 @@ public class Sampling {
 
 	private static RandomQS random;
 	private static BetterQS better;
+	private static Quickersort quicker;
+	private static Keysort keysort;
 
 	private static int base = 10;
 	private static int maxExpo = 6;
@@ -32,13 +36,21 @@ public class Sampling {
 
 		random = new RandomQS();
 		better = new BetterQS();
+		quicker = new Quickersort();
+		keysort = new Keysort();
+		
 		for (int expo = 1; expo <= maxExpo; expo++) {
 			long N = (int) Math.pow(base, expo);
-			System.err.format("%d \n", N);
+			System.err.format("%8d: \n", N);
 			for (int j = 0; j < 4; j++) {
 				files.write(j, String.format("%d", N));
 			}
-
+			
+			
+			
+			
+			
+			System.err.format("qs: ");
 			// RANDOM
 			for (int i = 0; i < maxLoop; i++) {
 				list = Sortobject.getRandomList(N, minKey * N, maxKey * N);
@@ -53,12 +65,19 @@ public class Sampling {
 			files.write(1, getMean(resCompare));
 			files.write(2, getMean(resTotal));
 			files.write(3, getMean(resTime));
-
-			for (int stop = 10; stop < 60; stop += 10) {
+			System.err.format(" %s \n", getMean(resTotal));
+			
+			
+			
+			
+			
+			for (int stop = 5; stop <= 25; stop += 5) {
 				// BETTER
-				better = new BetterQS();
+				System.err.format("qi%d: ", stop);
+				better = new BetterQS(stop);
 				for (int i = 0; i < maxLoop; i++) {
 					list = Sortobject.getRandomList(N, minKey * N, maxKey * N);
+					System.gc();
 					time = System.currentTimeMillis();
 					better.sort(list);
 					resTime[i] = System.currentTimeMillis() - time;
@@ -70,16 +89,51 @@ public class Sampling {
 				files.write(1, getMean(resCompare));
 				files.write(2, getMean(resTotal));
 				files.write(3, getMean(resTime));
+				System.err.format(" %s \n", getMean(resTotal));
+			}
+			
+			
+			/*
+			// Qicker
+			System.err.format("martin: ");
+			for (int i = 0; i < maxLoop; i++) {
+				list = Sortobject.getRandomList(N, minKey * N, maxKey * N);
+				time = System.currentTimeMillis();
+				quicker.sort(list);
+				resTime[i] = System.currentTimeMillis() - time;
+				resMove[i] = quicker.moveCount;
+				resCompare[i] = quicker.cmpCount;
+				resTotal[i] = quicker.getTotalCount();
+			}
+			files.write(0, getMean(resMove));
+			files.write(1, getMean(resCompare));
+			files.write(2, getMean(resTotal));
+			files.write(3, getMean(resTime));
+			System.err.format(" %s \n", getMean(resTotal));
+			*/
+			
+			// Keysort
+			System.err.format("ks: ");
+			for (int i = 0; i < maxLoop; i++) {
+				list = Sortobject.getRandomList(N, minKey * N, maxKey * N);
+				time = System.currentTimeMillis();
+				keysort.sort(list);
+				resTime[i] = System.currentTimeMillis() - time;
+				resMove[i] = keysort.moveCount;
+				resCompare[i] = keysort.cmpCount;
+				resTotal[i] = keysort.getTotalCount();
+			}
+			files.write(0, getMean(resMove));
+			files.write(1, getMean(resCompare));
+			files.write(2, getMean(resTotal));
+			files.write(3, getMean(resTime));
+			System.err.format(" %s \n", getMean(resTotal));
 
-				
-				}
 			for (int j = 0; j < 4; j++) {
 				files.write(j, "\n");
 			}
 		
-
 		}
-
 		files.close();
 
 	}
